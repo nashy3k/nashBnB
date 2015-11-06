@@ -2,13 +2,51 @@
 <html>
 <head>
   <title>NashBnB</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
+<header id="header" data-template="stage-header" class=" header-transparent">
+  <div id="header-inner" style="position:relative !important; background-color: #FFA500; text-align: center; height: 50px;" >
+    <div style="position: absolute; left: 100px; top: 0px;">
+      <%= image_tag("brand_nash.gif", :alt => "brand_nash") %>
+    </div>
+<nav class="navbar navbar-inverse">
+  <div class="container">
+    <div class="navbar-header">
+      <%= link_to 'Nash Home', root_path, class: 'navbar-brand' %>
+    </div>
+    <div id="navbar" text-align: center;>
+      <% if signed_in? %>
+        <ul class="nav navbar-nav">
+          
+        </ul>
+      <% end %>
 
+      <ul class="nav navbar-nav pull-right" >
+        <% if signed_in? %>
+          <li><span><%= current_user.email %></span></li>
+          <li><%= link_to 'Sign out', sign_out_path, method: :delete %></li>
+        <% else %>
+          <li><%= link_to 'Sign in', sign_in_path %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <% flash.each do |key, value| %>
+    <div class="alert alert-<%= key %>">
+      <%= value %>
+    </div>
+  <% end %>
+
+  <%= yield %>
+</div>
+
+</header>
 </body>
 </html>

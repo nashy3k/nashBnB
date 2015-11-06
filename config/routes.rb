@@ -1,4 +1,35 @@
 Rails.application.routes.draw do
+
+  resources :passwords, controller: "clearance/passwords", only: [:create, :new]
+
+  resource :session, controller: "clearance/sessions", only: [:create]
+
+  resources :users, controller: "users", only: [:create] do
+    resource :password,
+      controller: "clearance/passwords",
+      only: [:create, :edit, :update]
+  end
+
+  get "/sign_in" => "clearance/sessions#new", as: "sign_in"
+  delete "/sign_out" => "clearance/sessions#destroy", as: "sign_out"
+  get "/sign_up" => "clearance/users#new", as: "new_signup"
+
+  if Clearance.configuration.allow_sign_up?
+    get '/sign_up' => 'clearance/users#new', as: 'sign_up'
+  end
+  # get 'home/index'
+
+  # resources :users, controller: 'users', only: 'create'
+
+  root 'home#index'
+
+  # get '/signup', to: "registrations#new", as: 'new_signup'
+  # post '/signup', to: "registrations#create", as: 'signup'
+
+  # get '/login', to: "sessions#new", as: 'new_login'
+  # post '/login', to: "sessions#create", as: 'login'
+  # delete '/logout', to: "sessions#destroy", as: 'logout'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

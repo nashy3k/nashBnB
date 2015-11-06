@@ -1,0 +1,38 @@
+<div id='clearance' class='sign-up'>
+	<h1> Sign Up </h1>
+
+	<% if @user && @user.errors.present? %>
+	  <ul>
+	    <% @user.errors.full_messages.each do |e| %>
+	      <li><%= e %></li>
+	    <% end %>
+	  </ul>
+	<% end %>
+
+	<%= form_for @user do |f| %>
+		<div class='text-field'>	
+			<%= f.label :name %>
+		  <%= f.text_field :name %>
+		</div>
+
+		<div class='text-field'>
+			<%= f.label :email %>
+			<%= f.text_field :email %>
+		</div>
+
+		<div class='password-field'>	
+			<%= f.label :password %>
+			<%= f.password_field :password %>
+		</div>	
+
+		<div class='password-field'>
+			<%= f.label :password_confirmation %>
+			<%= f.password_field :password_confirmation %>
+		</div>	
+
+		<div class='submit-field'>
+			<%= f.submit "Sign Up" %>
+		</div>
+
+	<% end %>	
+</div>

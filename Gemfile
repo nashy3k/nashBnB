@@ -33,7 +33,14 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 
 # Use Clearance for authentication
-gem 'clearance'
+gem 'clearance', '~> 1.11.0'
+
+# Use Omniauth for facebook
+gem 'omniauth'
+gem 'omniauth-facebook'
+
+# Use Auther for clearance+facebook
+
 
 # User bootstrap styles
 gem 'bootstrap-sass'

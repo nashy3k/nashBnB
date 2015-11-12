@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="description" content="test page" />
+		<meta name="author"      content="author.name" />
+
+		<title>Test Page </title>
+
+		<link rel='stylesheet' href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+		<style>
+			ul {
+				list-style-type: none;
+			}
+			ul li {
+				margin-bottom: 10px;
+			}
+			.btn-custom {
+				background-color: transparent;
+				box-shadow: 3px 3px 3px 3px #888888;
+			}
+			.action-button li button.active {
+				background-color: red;
+			}
+		</style>
+
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		<script>
+			$(document).on('ready page:load', function(){
+				$('.action-button button').click(function() {
+					$('.action-button button.active').removeClass('active');
+					$(this).addClass('active');
+				})
+			});
+		</script>
+	</head>
+	<body>
+		<div class="wrapper container">
+			<ul class="action-button">
+				<li><a href="#1"><button type="button" class="btn btn-custom btn-block">Button 1</button></a></li>
+				<li><a href="#2"><button type="button" class="btn btn-custom btn-block">Button 2</button></a></li>
+				<li><a href="#3"><button type="button" class="btn btn-custom btn-block">Button 3</button></a></li>
+				<li><a href="#4"><button type="button" class="btn btn-custom btn-block">Button 4</button></a></li>
+				<li><a href="#5"><button type="button" class="btn btn-custom btn-block">Button 5</button></a></li>
+			</ul>
+		</div>
+	</body>
+</html>

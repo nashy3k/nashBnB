@@ -13,27 +13,23 @@
     <div style="position: absolute; left: 100px; top: 0px;">
       <%= image_tag("brand_nash.gif", :alt => "brand_nash") %>
     </div>
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-header ">
   <div class="container">
     <div class="navbar-header">
       <%= link_to 'Nash Home', root_path, class: 'navbar-brand' %>
     </div>
     <div id="navbar" text-align: center;>
-      <% if signed_in? %>
-        <ul class="nav navbar-nav">
-          
-        </ul>
-      <% end %>
-
       <ul class="nav navbar-nav pull-right" >
         <% if signed_in? %>
           <li><span><%= current_user.email %></span></li>
+          <li><%= link_to 'Edit', edit_user_path(current_user) %></li>          
           <li><%= link_to 'Sign out', sign_out_path, method: :delete %></li>
         <% else %>
           <li><%= link_to 'Sign in', sign_in_path %></li>
         <% end %>
       </ul>
     </div>
+    <li><%= link_to 'Facebook', '/auth/facebook' %></li>
   </div>
 </nav>
 

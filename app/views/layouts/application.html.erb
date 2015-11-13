@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Type" content="text/html">
+  <meta charset='utf-8'> 
+  <link rel='stylesheet' type='text/css' href='/css/application.css'/>  
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous"> 
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha256-Sk3nkD6mLTMOF0EOpNtsIry+s1CsaqQC1rVLTAy+0yc= sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+  <script type='text/javascript' src='/js/application.js'></script>    
   <title>NashBnB</title>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -8,30 +17,44 @@
 </head>
 <body>
 
+<div class="container-fluid" style="padding-left: 0px !important; padding-right: 0px !important;">
 <header id="header" data-template="stage-header" class=" header-transparent">
-  <div id="header-inner" style="position:relative !important; background-color: #FFA500; text-align: center; height: 50px;" >
-    <div style="position: absolute; left: 100px; top: 0px;">
-      <%= image_tag("brand_nash.gif", :alt => "brand_nash") %>
-    </div>
-<nav class="navbar navbar-header ">
-  <div class="container">
-    <div class="navbar-header">
-      <%= link_to 'Nash Home', root_path, class: 'navbar-brand' %>
-    </div>
-    <div id="navbar" text-align: center;>
-      <ul class="nav navbar-nav pull-right" >
-        <% if signed_in? %>
-          <li><span><%= current_user.email %></span></li>
-          <li><%= link_to 'Edit', edit_user_path(current_user) %></li>          
-          <li><%= link_to 'Sign out', sign_out_path, method: :delete %></li>
-        <% else %>
-          <li><%= link_to 'Sign in', sign_in_path %></li>
-        <% end %>
-      </ul>
-    </div>
-    <li><%= link_to 'Facebook', '/auth/facebook' %></li>
-  </div>
-</nav>
+  <div id="header-inner">
+    <nav class="navbar navbar-default" style="background-color: #FFA500; border-bottom-width: 0px; height: 80px">
+
+        <div class="row">
+          <div class="navbar-header col-md-3 col-md-offset-1">
+            <%= link_to(image_tag("brand_nash.gif", :alt => "brand_nash"), root_path, class: 'navbar-brand') %>
+          </div>
+
+          <div id="navbar" class="col-md-5">
+           <% if signed_in? %>
+            <ul class="nav navbar-nav">
+              <li><%= link_to 'New listing', root_path %></li>
+              <li><%= link_to 'Show all my listings', root_path %></li>
+
+            </ul>
+            <% end %>  
+           </div>  
+
+          <div id="nav_user" class="col-md-3">                 
+           <ul class="nav navbar-nav pull-right" >   
+              <% if signed_in? %>
+                <li><span><%= current_user.email %></span></li>
+                <li><span class="glyphicon glyphicon-pencil"><%= link_to 'Edit', edit_user_path(current_user) %>  <span class="glyphicon glyphicon-off"><%= link_to 'Sign out', sign_out_path, method: :delete %></li>          
+              <% else %>
+                <li><span class="glyphicon glyphicon-log-in"><%= link_to 'Sign in', sign_in_path %></li>
+                <li><span class="glyphicon glyphicon-plus"><%= link_to 'Facebook', '/auth/facebook' %></li>
+              <% end %>
+            </ul>
+          </div>  
+
+      </div>  
+     </nav>   
+
+  </div>  
+</header>   
+</div> 
 
 <div class="container">
   <% flash.each do |key, value| %>

@@ -1,0 +1,42 @@
+// Place all the styles related to the Listings controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.radio input[type=radio], .radio-inline input[type=radio], .checkbox input[type=checkbox], .checkbox-inline input[type=checkbox] {
+    margin-right: -20px;
+    margin-left: 0;
+}
+
+body {
+    background-image: url('https://a2.muscache.com/airbnb/static/landing_pages/pretzel/stills/sanfrancisco-252df5ad9ab6e9f1dc77723a6f7b6c4b.jpg');
+    repeat: no-repeat;
+}
+
+div#planet {
+    height: 100px;
+    width: 100px;
+    border-radius: 100%;
+    background-color: #008800;
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#003500), to(#008800));
+    background-image: -webkit-linear-gradient(left, #003500, #008800); 
+    background-image:    -moz-linear-gradient(left, #003500, #008800);
+    background-image:     -ms-linear-gradient(left, #003500, #008800);
+    background-image:      -o-linear-gradient(left, #003500, #008800);
+}
+
+.timepicker {
+    width: 150px;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+#BookNow {
+
+}
+
+#calendar {
+  width: 40%
+}
+

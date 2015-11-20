@@ -1,0 +1,107 @@
+<div id='listings' class='show'>
+	<h1> Show Listing </h1>
+
+	<% if @listing && @listing.errors.present? %>
+	  <ul>
+	    <% @listing.errors.full_messages.each do |e| %>
+	      <li><%= e %></li>
+	    <% end %>
+	  </ul>
+	<% end %>
+
+
+		<div class='text-field'>	
+		  Title <%= @listing.title %>
+		</div>
+
+		<div class='text-field'>	
+		  Location <%= @listing.location %>
+		</div>
+
+		<div class='text-area'>	
+		  About <%= @listing.about %>
+		</div>
+
+		<div class='number-field'>
+			Accomodates <%= @listing.accomodates %>
+		</div>
+
+		<div class='number-field'>	
+			Bathrooms <%= @listing.bathrooms %>
+		</div>	
+
+		<div class='text-field'>
+			Bed_type <%= @listing.bed_type %>
+		</div>	
+
+		<div class='number-field'>
+			Bedrooms <%= @listing.bedrooms %>
+		</div>	
+
+		<div class='number-field'>
+			Beds <%= @listing.beds %>
+		</div>	
+
+		<div>
+			Check_in <%= @listing.check_in.strftime("%H:%M %p") %>
+		</div>
+
+
+		<div>
+			Check_out <%= @listing.check_out.strftime("%H:%M %p") %>
+		</div>
+
+		</div>
+
+		<div>
+			Smoking <%= check_box_tag 'smoking ', '1', @listing.smoking, :disabled => true %>
+			Pets <%= check_box_tag 'pets', '1', @listing.pets, :disabled => true %>
+			Kitchen <%= check_box_tag 'kitchen', '1', @listing.kitchen, :disabled => true %>	
+			Tv <%= check_box_tag 'tv', '1', @listing.tv, :disabled => true %>
+			Internet <%= check_box_tag 'internet', '1', @listing.internet, :disabled => true %>
+			Wifi <%= check_box_tag 'wifi', '1', @listing.wifi, :disabled => true %>						
+		</div>
+
+		<div>
+			Free parking <%= check_box_tag 'free_parking', '1', @listing.free_parking, :disabled => true %>
+			family friendly <%= check_box_tag 'family_friendly', '1', @listing.family_friendly, :disabled => true %>
+			Suitable events <%= check_box_tag 'suitable_events', '1', @listing.suitable_events, :disabled => true %>
+		<div>
+			
+		<div class='text-field'>
+			Prices <%= @listing.prices %>
+		</div>	
+
+		<div class='text-field'>
+			Weekly_discount <%= @listing.weekly_discount %>
+		</div>	
+
+		<div class='text-field'>
+			Monthly_discount <%= @listing.monthly_discount %>
+		</div>	
+
+		<div class='text-field'>
+			Cancellation <%= @listing.cancellation %>
+		</div>	
+
+		<div class='text-area'>
+			Description <%= @listing.description %>
+		</div>	
+
+		<div class='text-field'>
+			Safety_features <%= @listing.safety_features %>
+		</div>	
+
+		<div class='date-field'>
+			Availability_start_date <%= @listing.availability_start_date.strftime("%A %d/%m/%Y") %>
+		</div>			
+
+		<div class='date-field'>
+			Availability_end_date <%= @listing.availability_end_date.strftime("%A %d/%m/%Y") %>
+		</div>
+		
+		<div class='text-field'>
+			<%= link_to "Listings", listings_path %>
+		</div>
+
+</div>

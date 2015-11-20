@@ -1,0 +1,49 @@
+<div id='reservations' class='index'>
+	<h1> Index Reservation </h1>
+
+	<div class="container-fluid">
+		<div class="jumbotron">
+	    <div class="row">
+				<div id='calendar' class="col-md-3 col-md-offset-1">	</div>
+
+					
+			</div>
+		</div>	
+			<table>
+				<tr>
+					<th>Listing_id</th>
+				  <th>Guest name</th>
+				  <th>Guests</th>
+				  <th>Check_in_date</th>
+				  <th>Check_out_date</th>
+				  <th></th>
+				</tr>	
+
+				<% @reservation.each do |r| %>
+
+				<tr>
+					<td><%= link_to "#{r.listing_id}", listing_path(r) %></td>		
+					<td><%= r.user.name %></td>
+					<td><%= r.guests %></td>	
+					<td><%= r.check_in_date.strftime("%A %d/%m/%Y") %></td>
+					<td><%= r.check_out_date.strftime("%A %d/%m/%Y") %></td>
+
+			     <% if r.user_id == current_user.id %>
+			     		<td><%= link_to 'Edit', edit_listing_path(r) %></td>
+				      <td><%= link_to 'Destroy', listing_path(r), 
+											method: :delete, 
+											data: { confirm: 'Are you sure?' } %>
+							</td>
+						<% else %>
+							<td>								
+							</td>
+						<% end %>	
+				</tr>
+
+				<% end %>
+			</table>
+		</div>
+	</div>		
+
+
+

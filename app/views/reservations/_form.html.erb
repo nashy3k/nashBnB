@@ -1,0 +1,67 @@
+	<% if @reservation && @reservation.errors.present? %>
+	  <ul>
+	    <% @reservation.errors.full_messages.each do |e| %>
+	      <li><%= e %></li>
+	    <% end %>
+	  </ul>
+	<% end %>
+
+	<%= form_for @reservation do |f| %>
+
+		<div class='text-area'> <b>	
+			Title: <%= params[:title] %> 
+			Host_name: <%= @listing.user.name %>
+		  Listing_id: <%= params[:listing_id] %>
+		  <%= f.hidden_field :listing_id, value: params[:listing_id] %>
+		   </b>
+		</div>
+
+		<div class='text-area'>	
+			<%= f.label :comments %>
+		  <%= f.text_area :comments %>
+		</div>
+
+		<div class='number-field'>
+			<%= f.label :guests %>
+			<%= f.number_field( :guests, :value => 1, in: 1..10, step: 1)  %>
+		</div>
+
+		<div>
+			<%= f.label :check_in_date %>
+			<%= f.text_field :check_in_date, :value => params[:start_date].to_datetime.strftime("%Y-%m-%d"), :class => 'available' %>
+		</div>			
+
+		<div>
+			<%= f.label :check_out_date %>
+			<%= f.text_field :check_out_date, :value => (params[:start_date].to_datetime + 1.day).strftime("%Y-%m-%d"), :class => 'available' %>
+		</div>		
+
+		<div>
+			<%= f.label :smoking, class: "checkbox-inline bold" %>
+			<%= f.check_box :smoking %>
+			<%= f.label :pets, class: "checkbox-inline bold"  %>
+			<%= f.check_box :pets %>
+			<%= f.label :kitchen, class: "checkbox-inline bold" %>
+			<%= f.check_box :kitchen %>	
+			<%= f.label :tv, class: "checkbox-inline bold" %>
+			<%= f.check_box :tv %>
+			<%= f.label :internet, class: "checkbox-inline bold" %>
+			<%= f.check_box :internet %>
+			<%= f.label :wifi, class: "checkbox-inline bold" %>
+			<%= f.check_box :wifi %>						
+		</div>
+
+		<div>
+			<%= f.label :free_parking, class: "checkbox-inline bold" %>
+			<%= f.check_box :free_parking %>
+			<%= f.label :family_friendly, class: "checkbox-inline bold" %>
+			<%= f.check_box :family_friendly %>
+			<%= f.label :suitable_events, class: "checkbox-inline bold" %>
+			<%= f.check_box :suitable_events %>
+		<div>
+		
+		<div class='text-field'>
+			<%= f.submit "Submit" %>
+		</div>
+
+	<% end %>	

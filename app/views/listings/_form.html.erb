@@ -1,0 +1,146 @@
+	<% if @listing && @listing.errors.present? %>
+	  <ul>
+	    <% @listing.errors.full_messages.each do |e| %>
+	      <li><%= e %></li>
+	    <% end %>
+	  </ul>
+	<% end %>
+
+	<%= form_for @listing do |f| %>
+		<div class='text-field'>	
+			<%= f.label :title %>
+		  <%= f.text_field :title %>
+		</div>
+
+		<div class='text-field'>	
+			<%= f.label :location %>
+		  <%= f.text_field :location %>
+		</div>
+
+		<div class='text-area'>	
+			<%= f.label :about %>
+		  <%= f.text_area :about %>
+		</div>
+
+		<div class='number-field'>
+			<%= f.label :accomodates %>
+			<%= f.number_field( :accomodates, :value => 1, in: 1..10, step: 1)  %>
+		</div>
+
+		<div class='number-field'>	
+			<%= f.label :bathrooms %>
+			<%= f.number_field( :bathrooms, :value => 1, in: 1..10, step: 1)  %>
+		</div>	
+
+		<div class='text-field'>
+			<%= f.label :bed_type %>
+			<%= f.text_field :bed_type %>
+		</div>	
+
+		<div class='number-field'>
+			<%= f.label :bedrooms %>
+			<%= f.number_field( :bedrooms, :value => 1, in: 1..10, step: 1)  %>
+		</div>	
+
+		<div class='number-field'>
+			<%= f.label :beds %>
+			<%= f.number_field( :beds, :value => 1, in: 1..10, step: 1)  %>
+		</div>	
+
+		<div class='datetime-field'>
+
+		</div>	
+
+		<div class="row">
+  			<div class="col-md-1">
+  				<%= f.label :check_in %>
+  			</div>
+  			<div class="col-md-8 input-group timepicker">
+						<%= f.text_field :check_in, :class=>"form-control", :value=>"12:30", :id => "time" %>
+				    <span class="input-group-addon">
+				        <span class="glyphicon glyphicon-time"></span>
+				    </span>
+				</div>
+		</div>
+		
+		<div class="row">
+  			<div class="col-md-1">
+					<%= f.label :check_out %>
+  			</div>
+  			<div class="col-md-8 input-group timepicker">					
+			<%= f.datetime_field :check_out, :class=>"form-control", :value=>"11:30", :id => "time" %>
+				    <span class="input-group-addon">
+				        <span class="glyphicon glyphicon-time"></span>
+				    </span>
+				</div>
+		</div>
+
+		<div>
+			<%= f.label :smoking, class: "checkbox-inline bold" %>
+			<%= f.check_box :smoking %>
+			<%= f.label :pets, class: "checkbox-inline bold"  %>
+			<%= f.check_box :pets %>
+			<%= f.label :kitchen, class: "checkbox-inline bold" %>
+			<%= f.check_box :kitchen %>	
+			<%= f.label :tv, class: "checkbox-inline bold" %>
+			<%= f.check_box :tv %>
+			<%= f.label :internet, class: "checkbox-inline bold" %>
+			<%= f.check_box :internet %>
+			<%= f.label :wifi, class: "checkbox-inline bold" %>
+			<%= f.check_box :wifi %>						
+		</div>
+
+		<div>
+			<%= f.label :free_parking, class: "checkbox-inline bold" %>
+			<%= f.check_box :free_parking %>
+			<%= f.label :family_friendly, class: "checkbox-inline bold" %>
+			<%= f.check_box :family_friendly %>
+			<%= f.label :suitable_events, class: "checkbox-inline bold" %>
+			<%= f.check_box :suitable_events %>
+		<div>
+			
+		<div class='text-field'>
+			<%= f.label :prices %>
+			<%= f.text_field :prices %>
+		</div>	
+
+		<div class='text-field'>
+			<%= f.label :weekly_discount %>
+			<%= f.text_field :weekly_discount %>
+		</div>	
+
+		<div class='text-field'>
+			<%= f.label :monthly_discount %>
+			<%= f.text_field :monthly_discount %>
+		</div>	
+
+		<div class='text-field'>
+			<%= f.label :cancellation %>
+			<%= f.text_field :cancellation %>
+		</div>	
+
+		<div class='text-area'>
+			<%= f.label :description %>
+			<%= f.text_area :description %>
+		</div>	
+
+		<div class='text-field'>
+			<%= f.label :safety_features %>
+			<%= f.text_field :safety_features %>
+		</div>	
+
+		<div>
+			<%= f.label :availability_start_date %>
+			<%= f.text_field :availability_start_date, :class => 'available' %>
+		</div>			
+
+		<div>
+			<%= f.label :availability_end_date %>
+			<%= f.text_field :availability_end_date, :class => 'available' %>
+		</div>
+		
+		<div class='text-field'>
+			<%= f.submit "Submit" %>
+		</div>
+
+	<% end %>	

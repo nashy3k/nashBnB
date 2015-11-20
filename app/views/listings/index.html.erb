@@ -1,0 +1,57 @@
+<div id='listings' class='index'>
+	<h1> Index Listing </h1>
+
+	<div class="container-fluid">
+		<div class="jumbotron">
+	    <div class="row">
+				<div id='calendar' class="col-md-3 col-md-offset-1">	</div>
+
+					
+			</div>
+		</div>	
+			<table>
+				<tr>
+				  <th>Title</th>
+				  <th>Location</th>
+				  <th>Accomodates</th>
+				  <th>Beds</th>
+				  <th>Prices</th>
+				  <th>Availability_start_date</th>
+				  <th>Availability_end_date</th>
+				  <th></th>
+				</tr>	
+
+				<% @listing.each do |l| %>
+
+				<tr>
+					<td><%= link_to "#{l.title}", listing_path(l) %></td>
+					<td><%= l.location %></td>
+					<td><%= l.accomodates %></td>	
+					<td><%= l.beds %></td>
+					<td><%= l.prices %></td>
+					<td><%= l.availability_start_date.strftime("%A %d/%m/%Y") %></td>
+					<td><%= l.availability_end_date.strftime("%A %d/%m/%Y") %></td>
+
+			     <% if l.user_id == current_user.id %>
+			     		<td><%= link_to 'Edit', edit_listing_path(l) %></td>
+				      <td><%= link_to 'Destroy', listing_path(l), 
+											method: :delete, 
+											data: { confirm: 'Are you sure?' } %>
+							</td>
+						<% else %>
+							<td class='listing_BookNow' data-listingid="<%= l.id %>">
+								<%= button_tag(type: 'button') do %>
+								<%	content_tag(:strong, 'Book Now!') %>
+								<% end %>
+								
+							</td>
+						<% end %>	
+				</tr>
+
+				<% end %>
+			</table>
+		</div>
+	</div>		
+
+
+

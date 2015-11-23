@@ -1,0 +1,12 @@
+<div id='reservations' class='errors'>
+	<h1> Errors Reservation </h1>	
+
+	<% if @reservation && @reservation.errors.present? %>
+	  <ul>
+	    <% @reservation.errors.full_messages.each do |e| %>
+	      <li><%= e %></li>
+	    <% end %>
+	  </ul>
+	<% end %>
+
+</div>

@@ -15,7 +15,9 @@ class ListingsController < ApplicationController
   end 
 
   def show
+    @listingW = Listing.where(id: params[:id])
     @listing = Listing.find(params[:id])
+    @listings = Listing.this_month
   end 
 
   def edit
@@ -25,6 +27,7 @@ class ListingsController < ApplicationController
   def index
     @listing = Listing.all
     @listings = Listing.this_month
+    @reservation = Reservation.this_month
     # @date = params[:month] ? Date.parse(params[:month]) : Date.today
   end 
 

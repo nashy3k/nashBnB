@@ -11,7 +11,8 @@
 		</div>	
 			<table>
 				<tr>
-					<th>Listing_id</th>
+					<th>Reservation_id</th>
+					<th>Listing title</th>
 				  <th>Guest name</th>
 				  <th>Guests</th>
 				  <th>Check_in_date</th>
@@ -22,15 +23,16 @@
 				<% @reservation.each do |r| %>
 
 				<tr>
-					<td><%= link_to "#{r.listing_id}", listing_path(r) %></td>		
+					<td><%= link_to "#{r.id}", reservation_path(r) %></td>
+					<td><%= link_to "#{r.listing.title}", listing_path(r.listing) %></td>		
 					<td><%= r.user.name %></td>
 					<td><%= r.guests %></td>	
 					<td><%= r.check_in_date.strftime("%A %d/%m/%Y") %></td>
 					<td><%= r.check_out_date.strftime("%A %d/%m/%Y") %></td>
 
 			     <% if r.user_id == current_user.id %>
-			     		<td><%= link_to 'Edit', edit_listing_path(r) %></td>
-				      <td><%= link_to 'Destroy', listing_path(r), 
+			     		<td><%= link_to 'Edit', edit_reservation_path(r) %></td>
+				      <td><%= link_to 'Destroy', reservation_path(r), 
 											method: :delete, 
 											data: { confirm: 'Are you sure?' } %>
 							</td>

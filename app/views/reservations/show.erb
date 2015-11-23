@@ -11,7 +11,7 @@
 
 
 		<div class='text-field'>	
-		  user_id <%= @reservation.user_id %>
+		  Host name <%= @reservation.listing.user.name %>
 		</div>
 
 		<div class='text-field'>	
@@ -27,11 +27,11 @@
 		</div>
 
 		<div>
-			Check_in_date <%= @reservation.check_in_date.strftime("%H:%M %p") %>
+			Check_in_date <%= @reservation.check_in_date.strftime("%Y-%m-%d") %>
 		</div>
 
 		<div>
-			Check_out_date <%= @reservation.check_out_date.strftime("%H:%M %p") %>
+			Check_out_date <%= @reservation.check_out_date.strftime("%Y-%m-%d") %>
 		</div>
 
 		</div>

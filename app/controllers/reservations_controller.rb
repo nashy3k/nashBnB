@@ -6,14 +6,24 @@ class ReservationsController < ApplicationController
   end
 
   def create
+    @listing = Listing.find(params[:reservation][:listing_id])
+    existing_reservations = Reservation.where(listing_id: params[:reservation][:listing_id])
     @reservation = reservation_from_params
 
-    if @reservation.save
+    overlap = false
+    existing_reservations.each do |existing|
+      if @reservation.overlaps?(existing)
+        overlap = true
+        @reservation.errors.add(:check_in_date, "Reservation failed! Date overlaps with existing reservations") 
+      end
+    end
+
+    if overlap == false && @reservation.save
       @notice = "Reservation created!"
-      redirect_to reservations_path, :notice => @notice
+      redirect_to index_user_reservation_path, :notice => @notice
     else
       @notice = "Reservation failed!"
-      redirect_to listings_path, :notice => @notice
+      render template: 'reservations/errors'
     end 
   end 
 
@@ -28,7 +38,6 @@ class ReservationsController < ApplicationController
   def index
     @reservation = Reservation.all
     @reservations = Reservation.this_month
-    # @date = params[:month] ? Date.parse(params[:month]) : Date.today
   end 
 
   def index_user

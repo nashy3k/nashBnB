@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   resources :reservations, controller: "reservations", only: [:new, :create, :edit, :update, :show, :index, :destroy]
   get "/my_reservations" => "reservations#index_user", as: "index_user_reservation"
+  get "/errors_reservations" => "reservations#errors_user", as: "errors_user_reservation"
 
   root 'home#index'
 

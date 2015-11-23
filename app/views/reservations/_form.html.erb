@@ -9,10 +9,24 @@
 	<%= form_for @reservation do |f| %>
 
 		<div class='text-area'> <b>	
-			Title: <%= params[:title] %> 
+			<% if params[:action] == 'edit' %> 
+			Title: <%= @reservation.listing.title %>
+			<% else %>
+			Title: <%= params[:title] %>
+			<% end %>
+
+			<% if params[:action] == 'edit' %> 
+			Host_name: <%= @reservation.listing.user.name %>
+			<% else %>
 			Host_name: <%= @listing.user.name %>
+			<% end %>
+
+			<% if params[:action] == 'edit' %>
+			Listing_id:	<%= @reservation.listing.id %>
+			<% else %>
 		  Listing_id: <%= params[:listing_id] %>
 		  <%= f.hidden_field :listing_id, value: params[:listing_id] %>
+		  <% end %>
 		   </b>
 		</div>
 
@@ -28,12 +42,20 @@
 
 		<div>
 			<%= f.label :check_in_date %>
-			<%= f.text_field :check_in_date, :value => params[:start_date].to_datetime.strftime("%Y-%m-%d"), :class => 'available' %>
+			<% if params[:action] == 'edit' %>
+			<%= f.text_field :check_in_date, :class => 'available' %>
+			<% else %>
+			<%= f.text_field :check_in_date, :value => params[:start_date].to_datetime.strftime("%Y-%m-%d"), :class => 'available' %>			
+			<% end %>
 		</div>			
 
 		<div>
 			<%= f.label :check_out_date %>
-			<%= f.text_field :check_out_date, :value => (params[:start_date].to_datetime + 1.day).strftime("%Y-%m-%d"), :class => 'available' %>
+			<% if params[:action] == 'edit' %>
+			<%= f.text_field :check_out_date, :class => 'available' %>
+			<% else %>
+			<%= f.text_field :check_out_date, :value => (params[:start_date].to_datetime + 1.day).strftime("%Y-%m-%d"), :class => 'available' %>			
+			<% end %>			
 		</div>		
 
 		<div>

@@ -1,0 +1,74 @@
+$(document).on('ready page:change', function() {
+
+
+  $('#planet').on('click', function() {
+    $(this).effect('explode');
+  });
+
+	$('.timepicker').timepicker();
+
+	$(function() {
+  	$('.available').datepicker({
+  		dateFormat: 'yy-mm-dd'});
+		});
+
+
+	var toggle = 0;
+	var listingid = 0; // document.getElementById("listing_BookNow");
+
+	$(function() {
+
+	  $(".listing_BookNow").on('click', function(event) {
+
+	  	listingid = $(this).data("listingid")
+
+	  	if(toggle == 0){
+	  		$('#calendar').empty();
+		   	$('#calendar').fullCalendar({
+	        // put your options and callbacks here
+
+	        events: {
+			        url: '/listings/'+listingid+'.json'
+			        // url: '/listings.json'
+          },
+
+			    customButtons: {
+			        myCustomButton: {
+			            text: 'close!',
+			            click: function() {
+			                alert('clicked the custom button!');
+			            }
+			        }
+			    },
+			    header: {
+			        left: 'prev,next',
+			        center: 'title',
+			        right: 'today myCustomButton',
+			    },             
+					 
+	        dayClick: function(date, jsEvent, view) {
+	        var start_date = $(this).data('date');
+	        // var listingid = $("#listingid");
+	        var calendar = $('#calendar').fullCalendar('clientEvents')[0];
+	        var title = calendar.title;
+	        var listing_id = calendar.id;
+	        var user_id = calendar.user_id;
+	        // change the day's background color just for fun   	       
+					$(this).css('background-color', 'red');
+	        window.location.href = "/reservations/new?start_date=" + start_date + "&title=" + title + "&listing_id=" + listing_id + "&user_id=" + user_id
+
+	        // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+	        // alert('Current view: ' + view.name);
+     
+	    		}
+		    });
+    	toggle = 1;
+    	// $('#calendar').fullCalendar('refetchEvents');
+	  	} else {
+	  		$('#calendar').empty();
+	  		toggle = 0;
+	  	};
+		});
+	});	
+});
+

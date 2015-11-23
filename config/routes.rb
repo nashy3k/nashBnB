@@ -10,6 +10,13 @@ Rails.application.routes.draw do
       only: [:create, :edit, :update]
   end
 
+  resources :listings, controller: "listings", only: [:new, :create, :edit, :update, :show, :index, :destroy]
+  get "/my_listings" => "listings#index_user", as: "index_user_listing"
+
+  resources :reservations, controller: "reservations", only: [:new, :create, :edit, :update, :show, :index, :destroy]
+  get "/my_reservations" => "reservations#index_user", as: "index_user_reservation"
+  get "/errors_reservations" => "reservations#errors_user", as: "errors_user_reservation"
+
   root 'home#index'
 
   get "/sign_in" => "sessions#new", as: "sign_in"
@@ -21,6 +28,21 @@ Rails.application.routes.draw do
   end
 
   match "/auth/:provider/callback" => "sessions#create_from_omniauth", via: :get 
+
+  # mount FullcalendarEngine::Engine => "/fullcalendar_engine"
+
+  # get 'listings/new'
+
+  # get 'listings/create'
+
+  # get 'listings/edit'
+
+  # get 'listings/view'
+
+  # get 'listings/index'
+
+  # get 'listings/update'
+
   # get 'home/index'
 
   # resources :users, controller: 'users', only: 'create'

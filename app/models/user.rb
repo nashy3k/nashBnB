@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
 
 
   has_many :authentications, :dependent => :destroy
+  has_many :listings
+  has_many :reservations
 
   def login_social?
     if login_social == 1

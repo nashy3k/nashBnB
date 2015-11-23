@@ -1,0 +1,58 @@
+<div id='reservations' class='show'>
+	<h1> Show Reservation </h1>
+
+	<% if @reservation && @reservation.errors.present? %>
+	  <ul>
+	    <% @reservation.errors.full_messages.each do |e| %>
+	      <li><%= e %></li>
+	    <% end %>
+	  </ul>
+	<% end %>
+
+
+		<div class='text-field'>	
+		  Host name <%= @reservation.listing.user.name %>
+		</div>
+
+		<div class='text-field'>	
+		  listing_id <%= @reservation.listing_id %>
+		</div>
+
+		<div class='text-area'>	
+		  Comments <%= @reservation.comments %>
+		</div>
+
+		<div class='number-field'>
+			Guests <%= @reservation.guests %>
+		</div>
+
+		<div>
+			Check_in_date <%= @reservation.check_in_date.strftime("%Y-%m-%d") %>
+		</div>
+
+		<div>
+			Check_out_date <%= @reservation.check_out_date.strftime("%Y-%m-%d") %>
+		</div>
+
+		</div>
+
+		<div>
+			Smoking <%= check_box_tag 'smoking ', '1', @reservation.smoking, :disabled => true %>
+			Pets <%= check_box_tag 'pets', '1', @reservation.pets, :disabled => true %>
+			Kitchen <%= check_box_tag 'kitchen', '1', @reservation.kitchen, :disabled => true %>	
+			Tv <%= check_box_tag 'tv', '1', @reservation.tv, :disabled => true %>
+			Internet <%= check_box_tag 'internet', '1', @reservation.internet, :disabled => true %>
+			Wifi <%= check_box_tag 'wifi', '1', @reservation.wifi, :disabled => true %>						
+		</div>
+
+		<div>
+			Free parking <%= check_box_tag 'free_parking', '1', @reservation.free_parking, :disabled => true %>
+			family friendly <%= check_box_tag 'family_friendly', '1', @reservation.family_friendly, :disabled => true %>
+			Suitable events <%= check_box_tag 'suitable_events', '1', @reservation.suitable_events, :disabled => true %>
+		<div>
+					
+		<div class='text-field'>
+			<%= link_to "Reservations", reservations_path %>
+		</div>
+
+</div>

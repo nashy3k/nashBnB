@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 201511102005) do
+ActiveRecord::Schema.define(version: 201511191032) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,70 @@ ActiveRecord::Schema.define(version: 201511102005) do
   add_index "authentications", ["provider"], name: "index_authentications_on_provider", using: :btree
   add_index "authentications", ["uid"], name: "index_authentications_on_uid", using: :btree
   add_index "authentications", ["user_id"], name: "index_authentications_on_user_id", using: :btree
+
+  create_table "listings", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "title",                   null: false
+    t.string   "location",                null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.string   "about"
+    t.integer  "accomodates"
+    t.integer  "bathrooms"
+    t.string   "bed_type"
+    t.integer  "bedrooms"
+    t.integer  "beds"
+    t.datetime "check_in"
+    t.datetime "check_out"
+    t.boolean  "smoking"
+    t.boolean  "pets"
+    t.boolean  "kitchen"
+    t.boolean  "tv"
+    t.boolean  "internet"
+    t.boolean  "wifi"
+    t.boolean  "free_parking"
+    t.boolean  "family_friendly"
+    t.boolean  "suitable_events"
+    t.integer  "prices"
+    t.integer  "weekly_discount"
+    t.integer  "monthly_discount"
+    t.string   "cancellation"
+    t.string   "description"
+    t.datetime "availability_start_date"
+    t.datetime "availability_end_date"
+    t.string   "safety_features"
+    t.string   "pictures_url"
+  end
+
+  add_index "listings", ["location"], name: "index_listings_on_location", using: :btree
+  add_index "listings", ["title", "location"], name: "index_listings_on_title_and_location", unique: true, using: :btree
+  add_index "listings", ["title"], name: "index_listings_on_title", using: :btree
+  add_index "listings", ["user_id"], name: "index_listings_on_user_id", using: :btree
+
+  create_table "reservations", force: :cascade do |t|
+    t.integer  "user_id",         null: false
+    t.integer  "listing_id",      null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "comments"
+    t.integer  "guests"
+    t.datetime "check_in_date"
+    t.datetime "check_out_date"
+    t.boolean  "smoking"
+    t.boolean  "pets"
+    t.boolean  "kitchen"
+    t.boolean  "tv"
+    t.boolean  "internet"
+    t.boolean  "wifi"
+    t.boolean  "free_parking"
+    t.boolean  "family_friendly"
+    t.boolean  "suitable_events"
+  end
+
+  add_index "reservations", ["check_in_date"], name: "index_reservations_on_check_in_date", using: :btree
+  add_index "reservations", ["check_out_date"], name: "index_reservations_on_check_out_date", using: :btree
+  add_index "reservations", ["listing_id"], name: "index_reservations_on_listing_id", using: :btree
+  add_index "reservations", ["user_id"], name: "index_reservations_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name"

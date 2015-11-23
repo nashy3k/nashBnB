@@ -16,8 +16,11 @@ gem 'coffee-rails', '~> 4.1.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
+gem 'jquery-turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
@@ -39,9 +42,20 @@ gem 'clearance', '~> 1.11.0'
 gem 'omniauth'
 gem 'omniauth-facebook'
 
-# Use Auther for clearance+facebook
+# Use fullcalendar_engine for availabilty/bookings
+gem 'fullcalendar_engine'
+gem 'fullcalendar-rails'
+gem 'momentjs-rails'
 
+# Use clock
+# gem 'bootstrap-sass', '~> 3.3.5'
+gem 'bootstrap-timepicker-rails-addon', '~> 0.5.1'
 
+# Use datepicker
+# gem 'bootstrap-datepicker-rails'
+
+# User table builder
+gem "watu_table_builder", :require => "table_builder", :git => "git://github.com/marclipovsky/table_builder.git"
 # User bootstrap styles
 gem 'bootstrap-sass'
 

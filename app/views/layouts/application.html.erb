@@ -4,13 +4,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Type" content="text/html">
   <meta charset='utf-8'> 
-  <link rel='stylesheet' type='text/css' href='/css/application.css'/>  
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous"> 
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha256-Sk3nkD6mLTMOF0EOpNtsIry+s1CsaqQC1rVLTAy+0yc= sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
-  <script type='text/javascript' src='/js/application.js'></script>    
-  <title>NashBnB</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+  <link href="~/fullcalendar.print.css" media="print" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha256-Sk3nkD6mLTMOF0EOpNtsIry+s1CsaqQC1rVLTAy+0yc= sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script> 
+  <title><%= content_for?(:title) ? yield(:title) : "NashBnB" %></title>
+  <%= stylesheet_link_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css", "application" %>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -29,10 +28,15 @@
 
           <div id="navbar" class="col-md-5">
            <% if signed_in? %>
-            <ul class="nav navbar-nav">
-              <li><%= link_to 'New listing', root_path %></li>
-              <li><%= link_to 'Show all my listings', root_path %></li>
-
+            <ul class="nav navbar-tabs nav-justified">
+              <li><%= link_to 'New listing', new_listing_path %></li>
+              <li><%= link_to 'Show all listings', listings_path %></li>
+              <li><%= link_to 'Show my listings', index_user_listing_path %></li>
+            </ul>
+            <ul class="nav navbar-pills nav-justified">
+              <li><%= link_to 'New reservation - Broken', new_reservation_path %></li>
+              <li><%= link_to 'Show all reservations', reservations_path %></li>
+              <li><%= link_to 'Show my reservations', index_user_reservation_path %></li>
             </ul>
             <% end %>  
            </div>  

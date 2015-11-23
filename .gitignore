@@ -15,3 +15,8 @@
 /log/*
 !/log/.keep
 /tmp
+
+# Special for ActiveMailer
+/config/mailer.yml
+/config/clooudinary.yml
+/config/facebook.yml

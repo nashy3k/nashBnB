@@ -1,0 +1,10 @@
+development:
+  mailer_user_name: "codingnash@gmail.com"
+  mailer_password: "codingnash"
+  mailer_domain: "localhost:3000"
+
+
+production:
+  mailer_user_name: "codingnash@gmail.com"
+  mailer_password: "codingnash"
+  mailer_domain: "localhost:3000"
